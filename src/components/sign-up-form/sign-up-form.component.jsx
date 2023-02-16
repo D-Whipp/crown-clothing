@@ -1,5 +1,10 @@
 import { useState } from 'react';
 
+import {
+    createAuthUserWithEmailAndPassword,
+    createUserDocumentFromAuth,
+} from '../../utils/firebase/firebase.utils';
+
 const defaultFormFields = {
     displayName: '',
     email: '',
@@ -14,6 +19,52 @@ const SignUpForm = () => {
 
     console.log(formFields);
 
+    const resetFormFields = () => {
+        setFormFields(defaultFormFields);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (password !== confirmPassword) {
+            alert('passwords do not match');
+            return;
+        }
+
+        try {
+            const { user } = await createAuthUserWithEmailAndPassword(
+                email,
+                password
+            );
+
+            await createUserDocumentFromAuth(user, { displayName });
+            resetFormFields();
+        } catch (error) {
+            // console.error(
+            if (error.code === 'auth/email-already-in-use') {
+                alert('Cannot create user, email already in use');
+            } else {
+                console.log(
+                    'user creation encountered an error: ',
+                    error
+                );
+            }
+            // );
+        }
+
+        // const { displayName, email, password, confirmPassword } =
+        //     formFields;
+
+        // if (password === confirmPassword) {
+        //     if (!createAuthUserWithEmailAndPassword) return;
+
+        //     const userDocRef = await createUserDocumentFromAuth({
+        //         displayName,
+        //         email,
+        //     });
+        // }
+    };
+
     const handleChange = (event) => {
         const { name, value } = event.target;
 
@@ -23,7 +74,7 @@ const SignUpForm = () => {
     return (
         <div>
             <h1>Sign up with your email and password</h1>
-            <form onSubmit={() => {}}>
+            <form onSubmit={handleSubmit}>
                 <label>Display Name</label>
                 <input
                     type="text"
@@ -59,7 +110,7 @@ const SignUpForm = () => {
                     name="confirmPassword"
                     value={confirmPassword}
                 />
-                <button type="submit">Sugn Up</button>
+                <button type="submit">Sign Up</button>
             </form>
         </div>
     );
