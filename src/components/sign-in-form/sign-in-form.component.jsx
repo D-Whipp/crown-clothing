@@ -41,7 +41,19 @@ const SignInForm = () => {
             );
             console.log(response);
             resetFormFields();
-        } catch (error) {}
+        } catch (error) {
+            switch (error.code) {
+                case 'auth/wrong-password':
+                    alert('Incorrect password');
+                    break;
+                case 'auth/user-not-found':
+                    alert('User not found');
+                    break;
+                default:
+                    console.log(error);
+            }
+            console.log(error);
+        }
     };
 
     const handleChange = (event) => {
@@ -79,6 +91,7 @@ const SignInForm = () => {
 
                     <Button
                         buttonType="google"
+                        type="button"
                         onClick={signInWithGoogle}
                     >
                         Google Sign In

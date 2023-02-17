@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,+BAA+B,CAAC;EAC5B,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;EACf,eAAe,EAAE,aAAa;CAC/B",
-    "sources": [
-        "categories-directories.styles.scss"
-    ],
-    "names": [],
-    "file": "categories-directories.styles.css"
-}
+{"version":3,"sources":["categories-directories.styles.scss","categories-directories.styles.css"],"names":[],"mappings":"AAAA;EACI,WAAA;EACA,aAAA;EACA,eAAA;EACA,8BAAA;ACCJ","file":"categories-directories.styles.css"}
