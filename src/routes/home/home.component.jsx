@@ -1,7 +1,7 @@
-import CategoriesDirectory from '../../components/categories-directory/categories-directories-item.component';
+import Directory from "../../components/directory/directory.component";
 
 const Home = () => {
-    return <CategoriesDirectory />;
+    return <Directory />;
 };
 
 export default Home;
