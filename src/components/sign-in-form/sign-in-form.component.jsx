@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
-
+import Button, {
+    BUTTON_TYPE_CLASSES,
+} from '../button/button.component';
 
 import {
     signInWithGooglePopup,
@@ -21,7 +22,6 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 
-
     // console.log(formFields);
 
     const resetFormFields = () => {
@@ -36,7 +36,7 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
-            const {user} = await signInAuthUserWithEmailAndPassword(
+            const { user } = await signInAuthUserWithEmailAndPassword(
                 email,
                 password
             );
@@ -64,7 +64,7 @@ const SignInForm = () => {
     };
 
     return (
-        <div className="sign-up-container">
+        <div className="sign-in-container">
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
@@ -86,17 +86,16 @@ const SignInForm = () => {
                     value={password}
                 />
                 <div className="buttons-container">
-                    <Button buttonType="default" type="submit">
-                        Sign In
-                    </Button>
-
+                <Button buttonType={BUTTON_TYPE_CLASSES.base} type="submit">
+                Sign In
+              </Button>
                     <Button
-                        buttonType="google"
-                        type="button"
-                        onClick={signInWithGoogle}
-                    >
-                        Google Sign In
-                    </Button>
+                    buttonType={BUTTON_TYPE_CLASSES.google}
+                    type='button'
+                    onClick={signInWithGoogle}
+                  >
+                    Sign In With Google
+                  </Button> 
                 </div>
             </form>
         </div>
