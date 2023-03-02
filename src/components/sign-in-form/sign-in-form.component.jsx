@@ -11,7 +11,7 @@ import {
     signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase/firebase.utils';
 
-import './sign-in-form.styles.scss';
+import {SignUpContainer} from './sign-in-form.styles.jsx';
 
 const defaultFormFields = {
     email: '',
@@ -21,8 +21,6 @@ const defaultFormFields = {
 const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
-
-    // console.log(formFields);
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -64,7 +62,7 @@ const SignInForm = () => {
     };
 
     return (
-        <div className="sign-in-container">
+        <SignUpContainer>
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
@@ -101,7 +99,7 @@ const SignInForm = () => {
                     </Button>
                 </div>
             </form>
-        </div>
+        </SignUpContainer>
     );
 };
 
