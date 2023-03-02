@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 export const DirectoryItemContainer = styled.div`
     min-width: 30%;
     height: 240px;
@@ -54,7 +56,9 @@ export const DirectoryItemBody = styled.div`
     background-color: white;
     opacity: 0.7;
     position: absolute;
+`;
 
+export const LinkDiv = styled(Link)`
     h2 {
         font-weight: bold;
         margin: 0 6px 0;
